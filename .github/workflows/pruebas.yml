@@ -1,0 +1,26 @@
+name: Pruebas del taller
+
+# push ejecuta la revisión al recibir cambios; workflow_dispatch permite iniciarla a mano.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v7
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements.txt
+      - name: Ejecutar pruebas y medir cobertura
+        run: python -m pytest -q --cov=taller --cov-branch --cov-report=term-missing
+      - name: Revisar código con Ruff
+        run: python -m ruff check .
