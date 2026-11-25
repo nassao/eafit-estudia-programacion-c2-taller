@@ -48,4 +48,13 @@ def test_cancelar_tipo_invalido(taller):
 def test_crear_con_tipo_invalido():
     with pytest.raises(ValueError, match="El cupo debe ser entero y positivo"):
         Taller("Python", "16", 4)
+    with pytest.raises(ValueError, match="El cupo debe ser entero y positivo"):
+        Taller("Python", True, 4)
+    with pytest.raises(ValueError, match="El cupo debe ser entero y positivo"):
+        Taller("Python", {}, 4)
+
+def test_cancelar_en_vacio():
+    taller = Taller("Python", 16, 0)
+    assert taller.cancelar(0) == "Rechazado: cantidad no positiva"
+    assert taller.inscritos == 0
 
