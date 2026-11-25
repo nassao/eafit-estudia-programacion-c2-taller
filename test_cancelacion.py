@@ -44,3 +44,8 @@ def test_cancelar_tipo_invalido(taller):
         taller.cancelar("2")
     assert taller.inscritos == 4
 # <<< ROJO: FIN DEL BLOQUE
+
+def test_crear_con_tipo_invalido():
+    with pytest.raises(ValueError, match="El cupo debe ser entero y positivo"):
+        Taller("Python", "16", 4)
+
