@@ -54,32 +54,32 @@ class Taller:
 # Mantén como máximo una definición activa de cancelar.
 
 # >>> VERDE: INICIO DEL BLOQUE
-    def cancelar(self, cantidad):
-        """Cancela una cantidad válida; conserva inscritos cuando rechaza."""
-        # Primero distinguimos el tipo; luego validamos la regla de negocio.
-        if type(cantidad) is int:
-            if cantidad > 0:
-                if cantidad <= self.inscritos:
-                    self.inscritos -= cantidad
-                    return "Aceptado"
-                else:
-                    return "Rechazado: inscritos insuficientes"
-            else:
-                return "Rechazado: cantidad no positiva"
-        else:
-            raise ValueError("La cantidad debe ser entera")
+#     def cancelar(self, cantidad):
+#         """Cancela una cantidad válida; conserva inscritos cuando rechaza."""
+#         # Primero distinguimos el tipo; luego validamos la regla de negocio.
+#         if type(cantidad) is int:
+#             if cantidad > 0:
+#                 if cantidad <= self.inscritos:
+#                     self.inscritos -= cantidad
+#                     return "Aceptado"
+#                 else:
+#                     return "Rechazado: inscritos insuficientes"
+#             else:
+#                 return "Rechazado: cantidad no positiva"
+#         else:
+#             raise ValueError("La cantidad debe ser entera")
 # <<< VERDE: FIN DEL BLOQUE
 
 # >>> REFACTOR: INICIO DEL BLOQUE
-#     def cancelar(self, cantidad):
-#         """Retira inscritos solo después de validar el tipo y la regla de negocio."""
-#         if type(cantidad) is not int:
-#             raise ValueError("La cantidad debe ser entera")
-#         if cantidad <= 0:
-#             return "Rechazado: cantidad no positiva"
-#         if cantidad > self.inscritos:
-#             return "Rechazado: inscritos insuficientes"
-#         # La resta usa el setter: el estado se mantiene entre cero y el cupo.
-#         self.inscritos -= cantidad
-#         return "Aceptado"
+    def cancelar(self, cantidad):
+        """Retira inscritos solo después de validar el tipo y la regla de negocio."""
+        if type(cantidad) is not int:
+            raise ValueError("La cantidad debe ser entera")
+        if cantidad <= 0:
+            return "Rechazado: cantidad no positiva"
+        if cantidad > self.inscritos:
+            return "Rechazado: inscritos insuficientes"
+        # La resta usa el setter: el estado se mantiene entre cero y el cupo.
+        self.inscritos -= cantidad
+        return "Aceptado"
 # <<< REFACTOR: FIN DEL BLOQUE
