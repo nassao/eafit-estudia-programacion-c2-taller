@@ -54,6 +54,17 @@ class Taller:
 # Mantén como máximo una definición activa de cancelar.
 
 # >>> VERDE: INICIO DEL BLOQUE
+
+    def cancelar(self, cantidad):
+        if cantidad > 0:
+            if cantidad <= self.inscritos:
+                self.inscritos -= cantidad
+                return "Aceptado"
+            else:
+                return "Rechazado: inscritos insuficientes"
+        else:
+            return "Rechazado: cantidad no positiva"
+
 #     def cancelar(self, cantidad):
 #         """Cancela una cantidad válida; conserva inscritos cuando rechaza."""
 #         # Primero distinguimos el tipo; luego validamos la regla de negocio.

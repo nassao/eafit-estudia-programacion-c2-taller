@@ -4,43 +4,43 @@
 # No cambies los esperados para obtener verde. Las seis pruebas comparten el contrato.
 
 # >>> ROJO: INICIO DEL BLOQUE
-# import pytest
-# from taller import Taller
-#
-#
-# @pytest.fixture
-# def taller():
-#     # La fixture es local a este archivo; no depende de test_taller.py.
-#     return Taller("Python", 16, 4)
-#
-#
-# def test_cancelar_parcial(taller):
-#     assert taller.cancelar(2) == "Aceptado"
-#     assert taller.inscritos == 2
-#
-#
-# def test_cancelar_exceso(taller):
-#     assert taller.cancelar(5) == "Rechazado: inscritos insuficientes"
-#     assert taller.inscritos == 4
-#
-#
-# def test_cancelar_total(taller):
-#     assert taller.cancelar(4) == "Aceptado"
-#     assert taller.inscritos == 0
-#
-#
-# def test_cancelar_cero(taller):
-#     assert taller.cancelar(0) == "Rechazado: cantidad no positiva"
-#     assert taller.inscritos == 4
-#
-#
-# def test_cancelar_negativo(taller):
-#     assert taller.cancelar(-1) == "Rechazado: cantidad no positiva"
-#     assert taller.inscritos == 4
-#
-#
-# def test_cancelar_tipo_invalido(taller):
-#     with pytest.raises(ValueError, match="La cantidad debe ser entera"):
-#         taller.cancelar("2")
-#     assert taller.inscritos == 4
+import pytest
+from taller import Taller
+
+
+@pytest.fixture
+def taller():
+    # La fixture es local a este archivo; no depende de test_taller.py.
+    return Taller("Python", 16, 4)
+
+
+def test_cancelar_parcial(taller):
+    assert taller.cancelar(2) == "Aceptado"
+    assert taller.inscritos == 2
+
+
+def test_cancelar_exceso(taller):
+    assert taller.cancelar(5) == "Rechazado: inscritos insuficientes"
+    assert taller.inscritos == 4
+
+
+def test_cancelar_total(taller):
+    assert taller.cancelar(4) == "Aceptado"
+    assert taller.inscritos == 0
+
+
+def test_cancelar_cero(taller):
+    assert taller.cancelar(0) == "Rechazado: cantidad no positiva"
+    assert taller.inscritos == 4
+
+
+def test_cancelar_negativo(taller):
+    assert taller.cancelar(-1) == "Rechazado: cantidad no positiva"
+    assert taller.inscritos == 4
+
+
+def test_cancelar_tipo_invalido(taller):
+    with pytest.raises(ValueError, match="La cantidad debe ser entera"):
+        taller.cancelar("2")
+    assert taller.inscritos == 4
 # <<< ROJO: FIN DEL BLOQUE
